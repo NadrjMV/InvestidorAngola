@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Investidor | Inteligência Financeira para um Mundo Global</title>
+    <meta name="description" content="Acesso global a formação, mentoria e plataformas de investimento de alto rendimento. Para investidores a partir de Angola e de todo o mundo.">
+    <meta name="keywords" content="investimentos, angola, formação, mentoria, bullmarketx, primeoptions, oráculo, investimentos globais">
+    <meta name="author" content="Investidor">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            /* Cores Base */
+            --primary-color: #1a202c; /* Cinza-azulado muito escuro */
+            --secondary-color: #d4af37; /* Dourado */
+            --accent-gradient: linear-gradient(45deg, #d4af37, #f7e086);
+
+            /* Tema Claro (RENOVADO PARA SER IMPRESSIONANTEMENTE LINDO) */
+            --light-text: #2c3e50; /* Um cinza-azulado escuro mais suave */
+            --light-text-secondary: #757575; /* Um cinza mais neutro para leitura */
+            --light-bg-body: #f4f6f9; /* Fundo de tom cinza-azulado muito claro e profissional */
+            --light-bg-alt: #ffffff; /* Branco puro para contraste em cartões e seções */
+            --light-border: #e2e8f0; /* Borda sutil */
+
+            /* Tema Escuro */
+            --dark-text: #e2e8f0;
+            --dark-text-secondary: #a0aec0;
+            --dark-bg-body: #1a202c;
+            --dark-bg-alt: #2d3748;
+            --dark-border: #4a5568;
+
+            /* Variáveis Ativas (Default para Light) */
+            --text-color: var(--light-text);
+            --text-color-secondary: var(--light-text-secondary);
+            --bg-body: var(--light-bg-body);
+            --bg-alt: var(--light-bg-alt);
+            --border-color: var(--light-border);
+
+            --header-height: 80px;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --text-color: var(--dark-text);
+            --text-color-secondary: var(--dark-text-secondary);
+            --bg-body: var(--dark-bg-body);
+            --bg-alt: var(--dark-bg-alt);
+            --border-color: var(--dark-border);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-color-secondary);
+            line-height: 1.7;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        
+        h1, h2, h3, h4 { color: var(--text-color); font-weight: 700; line-height: 1.3; }
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; text-align: center; }
+        h3 { font-size: 1.5rem; }
+        p { margin-bottom: 1rem; }
+        a { color: var(--secondary-color); text-decoration: none; }
+
+        section { padding: 6rem 0; }
+        .section-intro { max-width: 700px; margin: 0 auto 4rem auto; text-align: center; }
+        
+        .cta-button {
+            display: inline-block;
+            background-image: var(--accent-gradient);
+            color: var(--primary-color);
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(212, 175, 55, 0.25);
+        }
+
+        .animated-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animated-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header Moderno */
+        header {
+            width: 100%;
+            padding: 0 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        body.dark-mode header.scrolled {
+            background-color: rgba(45, 55, 72, 0.85);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-size: 1.75rem; font-weight: 800; color: var(--text-color); }
+        .nav-menu ul { list-style: none; display: flex; gap: 2.5rem; }
+        .nav-menu a { font-weight: 500; color: var(--text-color-secondary); position: relative; padding-bottom: 0.25rem; }
+        .nav-menu a:hover { color: var(--text-color); }
+        .nav-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--secondary-color); transition: width 0.3s ease; }
+        .nav-menu a:hover::after { width: 100%; }
+        .header-actions { display: flex; align-items: center; gap: 1rem; }
+        .language-switcher button { background: none; border: none; cursor: pointer; opacity: 0.7; transition: opacity 0.3s ease; font-weight: 500; color: var(--text-color-secondary); }
+        .language-switcher button.active { opacity: 1; color: var(--secondary-color); }
+
+        /* Theme Toggle */
+        .theme-toggle { background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 50px; width: 44px; height: 24px; position: relative; cursor: pointer; display: flex; align-items: center; padding: 2px; transition: background 0.3s ease, border-color 0.3s ease; }
+        .toggle-ball { background: var(--text-color-secondary); width: 20px; height: 20px; border-radius: 50%; position: absolute; left: 2px; transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center; color: var(--bg-body); font-size: 0.7em; }
+        body.dark-mode .theme-toggle .toggle-ball { transform: translateX(20px); }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-color); }
+        @media (max-width: 992px) {
+            .nav-menu { display: none; } .mobile-menu-toggle { display: block; }
+        }
+
+        /* Hero */
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://forbes.com.br/wp-content/uploads/2021/07/ForbesESG_EmpreendedoresNegros_27072021_fizkes_GettyImages.jpg') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-content { max-width: 750px; color: var(--dark-text); }
+        .hero-content h1 { color: #fff; margin-bottom: 1rem; }
+        .hero-content h1 span { color: var(--secondary-color); }
+        .hero-content p { font-size: 1.25rem; color: var(--dark-text-secondary); max-width: 600px; margin-bottom: 2rem; }
+        
+        /* Partners */
+        #parceiros { padding: 4rem 0; background: var(--bg-alt); }
+        .logos-grid { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2rem; }
+        .logos-grid img { height: 35px; filter: grayscale(100%) opacity(0.5); transition: all 0.3s ease; }
+        .logos-grid img:hover { filter: grayscale(0%) opacity(1); }
+        body.dark-mode .logos-grid img { filter: grayscale(100%) invert(100%) opacity(0.6); }
+        body.dark-mode .logos-grid img:hover { filter: grayscale(0%) invert(0%) opacity(1); }
+
+        /* About */
+        .about-container { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 5rem; }
+        .about-image img { width: 100%; border-radius: 0.75rem; }
+        .credibility-highlights { display: flex; gap: 3rem; margin-top: 2rem; }
+        .highlight .counter { font-size: 2.5rem; font-weight: 700; color: var(--secondary-color); }
+        .highlight p { text-transform: uppercase; font-size: 0.875rem; color: var(--text-color-secondary); }
+
+        /* Solutions */
+        #solucoes { background: var(--bg-alt); }
+        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .solution-card {
+            background: var(--bg-body);
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+        .solution-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.07);
+            border-color: var(--secondary-color);
+        }
+        body.dark-mode .solution-card:hover {
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+            border-color: var(--secondary-color);
+        }
+        .solution-card i {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .solution-card:hover i {
+            transform: scale(1.1);
+        }
+        .solution-card h3 { margin-bottom: 0.75rem; color: var(--text-color); }
+        .solution-card p { font-size: 0.95rem; color: var(--text-color-secondary); }
+
+        /* Platforms */
+        .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+        .platform-card {
+            background: var(--bg-alt);
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.05);
+        }
+        .platform-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px rgba(44, 62, 80, 0.1);
+            border-color: var(--secondary-color);
+        }
+         body.dark-mode .platform-card:hover {
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+            border-color: var(--secondary-color);
+        }
+        .platform-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .platform-logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .platform-card h3 { color: var(--text-color); font-size: 1.7rem; margin-top: 0; }
+        .platform-card p { font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .platform-card .cta-button { margin-top: auto; text-align: center; width: 100%; }
+
+        /* Media */
+        #videos { background: var(--bg-alt); }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .video-card {
+            background: var(--bg-body);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+        .video-card:hover {
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
+            transform: translateY(-6px);
+            border-color: var(--secondary-color);
+        }
+        body.dark-mode .video-card:hover {
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.25);
+            border-color: var(--secondary-color);
+        }
+        .video-thumbnail { position: relative; overflow: hidden; }
+        .video-thumbnail img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+        .video-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .video-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-color); }
+        .video-info p { font-size: 0.9rem; color: var(--text-color-secondary); }
+        .video-info .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        .video-info .read-more:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        body.dark-mode .video-info .read-more:hover {
+            color: var(--dark-text);
+        }
+
+        /* Contact */
+        #contato { background: var(--primary-color); color: var(--dark-text); }
+        #contato h2, #contato h3, #contato p { color: #fff; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; background: var(--dark-bg-alt); padding: 4rem; border-radius: 0.75rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 1rem; border-radius: 0.25rem; border: 1px solid var(--dark-border); background: var(--dark-bg-body); color: var(--dark-text); font-size: 1rem; margin-bottom: 1rem; }
+        .contact-info-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .contact-info-item i { font-size: 1.5rem; color: var(--secondary-color); }
+
+        /* Footer */
+        footer { padding: 4rem 0; background: var(--bg-alt); }
+        .footer-container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+        .footer-about p { font-size: 0.9rem; }
+        .social-icons a { color: var(--text-color-secondary); font-size: 1.25rem; margin-right: 1rem; transition: color 0.3s ease; }
+        .social-icons a:hover { color: var(--secondary-color); }
+        .footer-bottom { text-align: center; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; }
+
+        @media (max-width: 992px) {
+            h1 { font-size: 2.5rem; } h2 { font-size: 2rem; }
+            .about-container { grid-template-columns: 1fr; }
+            .contact-container { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .footer-container { grid-template-columns: 1fr; }
+            .header-actions .cta-button { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo" data-key="logo">Porta do Investidor Angola</a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#hero" data-key="nav_home">Home</a></li>
+                    <li><a href="#sobre" data-key="nav_about">Sobre</a></li>
+                    <li><a href="#solucoes" data-key="nav_solutions">Soluções</a></li>
+                    <li><a href="#plataformas" data-key="nav_platforms">Plataformas</a></li>
+                    <li><a href="#contato" data-key="nav_contact">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="language-switcher">
+                    <button id="lang-pt" class="active">PT</button> | <button id="lang-en">EN</button>
+                </div>
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="toggle-ball"><i class="fas fa-sun"></i></div>
+                </div>
+                <a href="#contato" class="cta-button" data-key="cta_speak_consultant">Fale Connosco</a>
+                <div class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="hero">
+            <div class="container">
+                <div class="hero-content animated-element">
+                    <h1 data-key="hero_title">Inteligência Financeira para um <span>Mundo Global</span></h1>
+                    <p data-key="hero_subtitle">Conectamos investidores de Angola e do mundo a formação, mentoria e plataformas de alto rendimento.</p>
+                    <a href="#solucoes" class="cta-button" data-key="cta_discover_solutions">Descobrir Soluções</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="parceiros">
+            <div class="container animated-element">
+                <div class="logos-grid">
+                    <img src="https://logo.clearbit.com/binance.com" alt="Binance Logo">
+                    <img src="https://logo.clearbit.com/coinbase.com" alt="Coinbase Logo">
+                    <img src="https://logo.clearbit.com/interactivebrokers.com" alt="Interactive Brokers Logo">
+                    <img src="https://logo.clearbit.com/degiro.com" alt="Degiro Logo">
+                    <img src="https://logo.clearbit.com/xtb.com" alt="XTB Logo">
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <div class="container about-container">
+                <div class="about-content animated-element">
+                    <h2 data-key="about_title" style="text-align: left; margin-left:0;">Transcendemos Fronteiras</h2>
+                    <p data-key="about_p1">Somos mais que uma consultoria; somos o seu parceiro estratégico na jornada financeira global. Com uma base sólida em Angola e um olhar no mundo, a nossa missão é democratizar o acesso a estratégias de investimento de elite.</p>
+                    <div class="credibility-highlights">
+                        <div class="highlight"><span class="counter" data-target="5">+5</span><p data-key="highlight_1_text">Anos de Experiência</p></div>
+                        <div class="highlight"><span class="counter" data-target="200">+200</span><p data-key="highlight_2_text">Clientes Globais</p></div>
+                        <div class="highlight"><span class="counter" data-target="50">+50</span><p data-key="highlight_3_text">M de Kz Investidos</p></div>
+                    </div>
+                </div>
+                <div class="about-image animated-element">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop" alt="Equipa global de consultores">
+                </div>
+            </div>
+        </section>
+        
+        <section id="solucoes">
+            <div class="container">
+                <div class="section-intro animated-element">
+                    <h2 data-key="solutions_title">As Nossas Soluções</h2>
+                    <p data-key="solutions_subtitle">Oferecemos um ecossistema completo para capacitar o investidor moderno, do conhecimento à execução.</p>
+                </div>
+                <div class="solutions-grid">
+                    <div class="solution-card animated-element" style="transition-delay: 0.1s;"><i class="fas fa-graduation-cap"></i><h3 data-key="solution_1_title">Formações Exclusivas</h3><p data-key="solution_1_desc">Acesso a cursos, do básico ao avançado, para dominar a arte de investir.</p></div>
+                    <div class="solution-card animated-element" style="transition-delay: 0.2s;"><i class="fas fa-user-tie"></i><h3 data-key="solution_2_title">Mentoria Personalizada</h3><p data-key="solution_2_desc">Acompanhamento individual com especialistas para traçar e executar a sua estratégia de sucesso.</p></div>
+                    <div class="solution-card animated-element" style="transition-delay: 0.3s;"><i class="fas fa-magnifying-glass-chart"></i><h3 data-key="solution_3_title">Análise de Mercado</h3><p data-key="solution_3_desc">Relatórios e insights exclusivos sobre mercados globais para decisões informadas.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plataformas">
+            <div class="container">
+                <div class="section-intro animated-element">
+                    <h2 data-key="platforms_title">Plataformas Parceiras</h2>
+                    <p data-key="platforms_subtitle">Conectamos os nossos clientes a plataformas robustas e reconhecidas, cada uma servindo um perfil de investidor distinto.</p>
+                </div>
+                <div class="platform-grid">
+                    <div class="platform-card animated-element" style="transition-delay: 0.1s;">
+                        <div class="platform-header"><div class="platform-logo">BMX</div><h3>BullMarketX</h3></div>
+                        <p data-key="platform_1_desc">Para o investidor arrojado que busca retornos exponenciais através de operações de alta frequência. (*Alto Risco)</p>
+                        <a href="https://www.bullmarketx.site/register/jordanlvs" class="cta-button" target="_blank" data-key="cta_get_access">Obter Acesso</a>
+                    </div>
+                    <div class="platform-card animated-element" style="transition-delay: 0.2s;">
+                        <div class="platform-header"><div class="platform-logo">PO</div><h3>PrimeOptions</h3></div>
+                        <p data-key="platform_2_desc">Plataforma global de opções, com uma interface robusta para todos os níveis de experiência.</p>
+                        <a href="https://primeoptions.io" target="_blank" class="cta-button" data-key="cta_visit_website">Visitar o Site</a>
+                    </div>
+                    <div class="platform-card animated-element" style="transition-delay: 0.3s;">
+                        <div class="platform-header"><div class="platform-logo"><i class="fas fa-bolt"></i></div><h3>Oráculo</h3></div>
+                        <p data-key="platform_3_desc">Serviço de consultoria e sinais de mercado via contato direto, para um acompanhamento premium.</p>
+                        <a href="tel:+244932712385" target="_blank" class="cta-button" data-key="cta_contact_now">Contactar Agora</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="videos">
+            <div class="container">
+                 <div class="section-intro animated-element">
+                    <h2 data-key="media_title">Media & Análises</h2>
+                    <p data-key="media_subtitle">Conteúdo educativo e análises aprofundadas para manter os nossos investidores sempre à frente do mercado.</p>
+                </div>
+                <div class="video-grid">
+                    <a href="#" target="_blank" class="video-card animated-element" style="transition-delay: 0.1s;">
+                        <div class="video-thumbnail"><img src="https://www.topinvest.com.br/wp-content/uploads/2023/03/entendendo-o-mercado-financeiro-em-6-passos.jpeg" alt="Thumbnail"></div>
+                        <div class="video-info"><h3 data-key="video_1_title">Análise Semanal: Mercados Globais</h3><p data-key="video_1_desc">Uma visão aprofundada dos movimentos mais importantes do mercado internacional.</p><span class="read-more" data-key="read_more">Ler Mais <i class="fas fa-arrow-right"></i></span></div>
+                    </a>
+                    <a href="#" target="_blank" class="video-card animated-element" style="transition-delay: 0.2s;">
+                        <div class="video-thumbnail"><img src="https://www.livecapital.com.br/wp-content/uploads/2017/01/55519-entenda-o-que-e-o-risco-de-um-investimento.jpg" alt="Thumbnail"></div>
+                        <div class="video-info"><h3 data-key="video_2_title">Gestão de Risco para Iniciantes</h3><p data-key="video_2_desc">Descubra as estratégias essenciais para proteger os seus investimentos.</p><span class="read-more" data-key="read_more">Ler Mais <i class="fas fa-arrow-right"></i></span></div>
+                    </a>
+                    <a href="#" target="_blank" class="video-card animated-element" style="transition-delay: 0.3s;">
+                        <div class="video-thumbnail"><img src="https://xtb.scdn5.secure.raxcdn.com/kb_main_photo/0102/57/thumb_10156110_kb_main_photo_front.png" alt="Thumbnail"></div>
+                        <div class="video-info"><h3 data-key="video_3_title">Psicologia de Trading</h3><p data-key="video_3_desc">Compreenda como as emoções impactam as suas decisões financeiras.</p><span class="read-more" data-key="read_more">Ler Mais <i class="fas fa-arrow-right"></i></span></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contato">
+            <div class="container contact-container animated-element">
+                <div class="contact-text">
+                    <h2 data-key="contact_title" style="text-align: left;">Inicie a Sua Jornada de Sucesso</h2>
+                    <p data-key="contact_subtitle">Estamos prontos para o ajudar a alcançar os seus objetivos financeiros. Contacte-nos para uma consulta inicial sem compromisso.</p>
+                    <div class="contact-info">
+                        <div class="contact-info-item"><i class="fas fa-envelope"></i><div><h4 data-key="contact_email_label">E-mail</h4><a href="mailto:global@investidor.com">global@investidor.com</a></div></div>
+                        <div class="contact-info-item"><i class="fas fa-phone"></i><div><h4 data-key="contact_phone_label">Telefone</h4><a href="tel:+244932712385">+244 932 712 385</a></div></div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form><div class="form-group"><input type="text" data-key="form_name" placeholder="Nome" required></div><div class="form-group"><input type="email" data-key="form_email" placeholder="E-mail" required></div><div class="form-group"><textarea data-key="form_message" placeholder="Mensagem" rows="5" required></textarea></div><button type="submit" class="cta-button" data-key="form_button">Enviar Mensagem</button></form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <h4 class="logo" data-key="logo">Portal do Investidor Angola</h4>
+                    <p data-key="footer_about">Inteligência financeira para investidores em Angola e no mundo.</p>
+                    <div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div>
+                </div>
+                <div class="footer-links">
+                    <h4 data-key="footer_solutions_title">Soluções</h4>
+                    <ul>
+                        <li><a href="#solucoes" data-key="footer_link_training">Formações</a></li>
+                        <li><a href="#solucoes" data-key="footer_link_mentorship">Mentoria</a></li>
+                        <li><a href="#solucoes" data-key="footer_link_analysis">Análises</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-links">
+                    <h4 data-key="footer_company_title">Empresa</h4>
+                    <ul>
+                        <li><a href="#sobre" data-key="footer_link_about">Sobre Nós</a></li>
+                        <li><a href="#contato" data-key="footer_link_contact">Contato</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-links">
+                    <h4 data-key="footer_platforms_title">Plataformas</h4>
+                    <ul>
+                        <li><a href="#plataformas">BullMarketX</a></li>
+                        <li><a href="#plataformas">PrimeOptions</a></li>
+                        <li><a href="#plataformas">Oráculo</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="current-year"></span> Portal do Investidor Angola. <span data-key="footer_copyright">Todos os direitos reservados.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ==================== TRADUÇÃO ====================
+            const translations = {
+                'pt': {
+                    logo: 'Investidor', nav_home: 'Home', nav_about: 'Sobre', nav_solutions: 'Soluções', nav_platforms: 'Plataformas', nav_contact: 'Contato', cta_speak_consultant: 'Fale Connosco',
+                    hero_title: 'Inteligência Financeira para um <span>Mundo Global</span>',
+                    hero_subtitle: 'Conectamos investidores de Angola e do mundo a formação, mentoria e plataformas de alto rendimento.',
+                    cta_discover_solutions: 'Descobrir Soluções',
+                    about_title: 'Transcendemos Fronteiras',
+                    about_p1: 'Somos mais que uma consultoria; somos o seu parceiro estratégico na jornada financeira global. Com uma base sólida em Angola e um olhar no mundo, a nossa missão é democratizar o acesso a estratégias de investimento de elite.',
+                    highlight_1_text: 'Anos de Experiência', highlight_2_text: 'Clientes Globais', highlight_3_text: 'M de Kz Investidos',
+                    solutions_title: 'As Nossas Soluções', solutions_subtitle: 'Oferecemos um ecossistema completo para capacitar o investidor moderno, do conhecimento à execução.',
+                    solution_1_title: 'Formações Exclusivas', solution_1_desc: 'Acesso a cursos, do básico ao avançado, para dominar a arte de investir.',
+                    solution_2_title: 'Mentoria Personalizada', solution_2_desc: 'Acompanhamento individual com especialistas para traçar e executar a sua estratégia de sucesso.',
+                    solution_3_title: 'Análise de Mercado', solution_3_desc: 'Relatórios e insights exclusivos sobre mercados globais para decisões informadas.',
+                    platforms_title: 'Plataformas Parceiras', platforms_subtitle: 'Conectamos os nossos clientes a plataformas robustas e reconhecidas, cada uma servindo um perfil de investidor distinto.',
+                    platform_1_desc: 'Para o investidor arrojado que busca retornos exponenciais através de operações de alta frequência. (*Alto Risco)', cta_get_access: 'Obter Acesso',
+                    platform_2_desc: 'Plataforma global de opções, com uma interface robusta para todos os níveis de experiência.', cta_visit_website: 'Visitar o Site',
+                    platform_3_desc: 'Serviço de consultoria e sinais de mercado via contato direto, para um acompanhamento premium.', cta_contact_now: 'Contactar Agora',
+                    media_title: 'Media & Análises', media_subtitle: 'Conteúdo educativo e análises aprofundadas para manter os nossos investidores sempre à frente do mercado.',
+                    video_1_title: 'Análise Semanal: Mercados Globais', video_1_desc: 'Uma visão aprofundada dos movimentos mais importantes do mercado internacional.',
+                    video_2_title: 'Gestão de Risco para Iniciantes', video_2_desc: 'Descubra as estratégias essenciais para proteger os seus investimentos.',
+                    video_3_title: 'Psicologia de Trading', video_3_desc: 'Compreenda como as emoções impactam as suas decisões financeiras.',
+                    read_more: 'Ler Mais',
+                    contact_title: 'Inicie a Sua Jornada de Sucesso', contact_subtitle: 'Estamos prontos para o ajudar a alcançar os seus objetivos financeiros. Contacte-nos para uma consulta inicial sem compromisso.',
+                    contact_email_label: 'E-mail', contact_phone_label: 'Telefone',
+                    form_name: 'Nome', form_email: 'E-mail', form_message: 'Mensagem', form_button: 'Enviar Mensagem',
+                    footer_about: 'Inteligência financeira para investidores em Angola e no mundo.', footer_solutions_title: 'Soluções', footer_link_training: 'Formações', footer_link_mentorship: 'Mentoria', footer_link_analysis: 'Análises',
+                    footer_company_title: 'Empresa', footer_link_about: 'Sobre Nós', footer_link_contact: 'Contato', footer_platforms_title: 'Plataformas',
+                    footer_copyright: 'Todos os direitos reservados.',
+                },
+                'en': {
+                    logo: 'Investor', nav_home: 'Home', nav_about: 'About', nav_solutions: 'Solutions', nav_platforms: 'Platforms', nav_contact: 'Contact', cta_speak_consultant: 'Contact Us',
+                    hero_title: 'Financial Intelligence for a <span>Global World</span>',
+                    hero_subtitle: 'We connect investors from Angola and around the world to training, mentorship, and high-yield platforms.',
+                    cta_discover_solutions: 'Discover Solutions',
+                    about_title: 'Transcending Borders',
+                    about_p1: 'More than a consultancy, we are your strategic partner on the global financial journey. With a solid base in Angola and a worldwide perspective, our mission is to democratize access to elite investment strategies.',
+                    highlight_1_text: 'Years of Experience', highlight_2_text: 'Global Clients', highlight_3_text: 'M Kz Invested',
+                    solutions_title: 'Our Solutions', solutions_subtitle: 'We offer a complete ecosystem to empower the modern investor, from knowledge to execution.',
+                    solution_1_title: 'Exclusive Training', solution_1_desc: 'Access to courses, from basic to advanced, to master the art of investing.',
+                    solution_2_title: 'Personalized Mentorship', solution_2_desc: 'One-on-one guidance with experts to design and execute your success strategy.',
+                    solution_3_title: 'Market Analysis', solution_3_desc: 'Exclusive reports and insights on global markets for informed decisions.',
+                    platforms_title: 'Partner Platforms', platforms_subtitle: 'We connect our clients to robust and recognized platforms, each serving a distinct investor profile.',
+                    platform_1_desc: 'For the bold investor seeking exponential returns through high-frequency trading. (*High Risk)', cta_get_access: 'Get Access',
+                    platform_2_desc: 'Global options platform with a robust interface for all experience levels.', cta_visit_website: 'Visit Website',
+                    platform_3_desc: 'Direct contact consulting and market signals service for premium support.', cta_contact_now: 'Contact Now',
+                    media_title: 'Media & Analysis', media_subtitle: 'Educational content and in-depth analysis to keep our investors ahead of the market.',
+                    video_1_title: 'Weekly Analysis: Global Markets', video_1_desc: 'An in-depth look at the most important movements in the international market.',
+                    video_2_title: 'Risk Management for Beginners', video_2_desc: 'Discover essential strategies to protect your investments.',
+                    video_3_title: 'Trading Psychology', video_3_desc: 'Understand how emotions impact your financial decisions.',
+                    read_more: 'Read More',
+                    contact_title: 'Start Your Journey to Success', contact_subtitle: 'We are ready to help you achieve your financial goals. Contact us for a no-obligation initial consultation.',
+                    contact_email_label: 'Email', contact_phone_label: 'Phone',
+                    form_name: 'Name', form_email: 'Email', form_message: 'Message', form_button: 'Send Message',
+                    footer_about: 'Financial intelligence for investors in Angola and worldwide.', footer_solutions_title: 'Solutions', footer_link_training: 'Training', footer_link_mentorship: 'Mentorship', footer_link_analysis: 'Analysis',
+                    footer_company_title: 'Company', footer_link_about: 'About Us', footer_link_contact: 'Contact', footer_platforms_title: 'Platforms',
+                    footer_copyright: 'All rights reserved.',
+                }
+            };
+            
+            const setLanguage = (lang) => {
+                document.querySelectorAll('[data-key]').forEach(el => {
+                    const key = el.getAttribute('data-key');
+                    const translation = translations[lang]?.[key];
+                    if (translation) {
+                        if (el.placeholder !== undefined) el.placeholder = translation.replace(/<[^>]*>?/gm, ''); // Remove HTML from placeholders
+                        else el.innerHTML = translation;
+                    }
+                });
+                document.documentElement.lang = lang; localStorage.setItem('userLanguage', lang);
+                document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+                document.getElementById('lang-pt').classList.toggle('active', lang === 'pt');
+            };
+            document.getElementById('lang-pt').addEventListener('click', () => setLanguage('pt'));
+            document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+            setLanguage(localStorage.getItem('userLanguage') || 'pt');
+
+            // ==================== HEADER STICKY ====================
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+
+            // ==================== ANIMAÇÕES DE SCROLL ====================
+            const animatedElements = document.querySelectorAll('.animated-element');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
+
+            // ==================== CONTADOR ANIMADO ====================
+            const counters = document.querySelectorAll('.counter');
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.getAttribute('data-target');
+                        const suffix = counter.innerText.replace(/[0-9.]/g, '');
+                        let current = 0;
+                        const updateCount = () => {
+                            const increment = target / 200;
+                            if (current < target) {
+                                current = Math.min(target, current + increment);
+                                counter.innerText = '' + Math.ceil(current) + suffix;
+                                requestAnimationFrame(updateCount);
+                            } else {
+                                counter.innerText = '' + target + suffix;
+                            }
+                        };
+                        updateCount();
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.7 });
+            counters.forEach(counter => counterObserver.observe(counter));
+            
+            // ==================== TEMA (DARK/LIGHT MODE) ====================
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const applyTheme = (theme) => {
+                body.className = theme;
+                localStorage.setItem('theme', theme);
+                const icon = theme === 'dark-mode' ? 'fa-moon' : 'fa-sun';
+                themeToggle.querySelector('.toggle-ball i').className = `fas ${icon}`;
+            };
+            themeToggle.addEventListener('click', () => {
+                const newTheme = body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
+                applyTheme(newTheme);
+            });
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark-mode' : 'light-mode');
+            applyTheme(savedTheme);
+
+            // ==================== ANO ATUAL ====================
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+
+</body>
+</html>
