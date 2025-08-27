@@ -65,7 +65,6 @@
         }
         body.dark-mode header.scrolled { background-color: rgba(26, 32, 44, 0.8); }
         .header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .logo { font-size: 1.75rem; font-weight: 800; color: var(--text-color); }
         .nav-menu ul { list-style: none; display: flex; gap: 2.5rem; }
         .nav-menu a { font-weight: 500; color: var(--text-color-secondary); position: relative; padding-bottom: 0.5rem; }
         .nav-menu a:hover { color: var(--text-color); }
@@ -174,7 +173,9 @@
         .contact-info-item i { font-size: 1.5rem; color: var(--secondary-color); width: 30px; text-align: center; }
         footer { padding: 5rem 0 3rem 0; background: var(--bg-body); border-top: 1px solid var(--border-color); }
         .footer-container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-        .footer-about .logo { font-size: 1.5rem; }
+        .logo img { height: 80px; width: auto; display: block; transition: opacity 0.3s ease; }
+        .logo:hover img { opacity: 0.8;}
+        .footer-about .logo img { height: 80px; }
         .footer-about p { font-size: 0.95rem; max-width: 300px; }
         .social-icons { margin-top: 1.5rem; }
         .social-icons a { color: var(--text-color-secondary); font-size: 1.25rem; margin-right: 1.5rem; transition: color 0.3s ease, transform 0.3s ease; display: inline-block; }
@@ -206,7 +207,9 @@
 
     <header id="header">
         <div class="container header-container">
-            <a href="#" class="logo" data-key="logo">Investidor</a>
+            <a href="#" class="logo">
+                <img src="https://i.postimg.cc/kGNTtmmm/rl.png" alt="Investidor Angola Logo">
+            </a>
             <nav class="nav-menu">
                 <ul>
                     <li><a href="#hero" data-key="nav_home">Home</a></li>
@@ -373,7 +376,9 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-about">
-                    <h4 class="logo" data-key="logo">Investidor</h4>
+                    <div class="logo">
+                        <img src="https://i.postimg.cc/kGNTtmmm/rl.png" alt="Investidor Angola Logo">
+                    </div>
                     <p data-key="footer_about">Inteligência financeira para investidores em Angola e no mundo.</p>
                     <div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div>
                 </div>
