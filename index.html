@@ -13,13 +13,16 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
         :root {
-            --primary-color: #1a202c; --secondary-color: #d4af37; --accent-gradient: linear-gradient(45deg, #d4af37, #f7e086);
+            /* ACESSIBILIDADE: Cor secundária ajustada para melhor contraste */
+            --primary-color: #1a202c; --secondary-color: #c7a42b; --accent-gradient: linear-gradient(45deg, #c7a42b, #f7e086);
             --light-text: #1a202c; --light-text-secondary: #5c677b; --light-bg-body: #f7f9fc; --light-bg-alt: #ffffff; --light-border: #e9eef5;
             --dark-text: #f7f9fc; --dark-text-secondary: #a0aec0; --dark-bg-body: #12161f; --dark-bg-alt: #1a202c; --dark-border: #2d3748;
             --text-color: var(--light-text); --text-color-secondary: var(--light-text-secondary); --bg-body: var(--light-bg-body); --bg-alt: var(--light-bg-alt); --border-color: var(--light-border);
@@ -51,7 +54,7 @@
             border: none; cursor: pointer; position: relative; overflow: hidden; z-index: 1;
         }
         .cta-button::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #f7e086, #e7c65d); opacity: 0; transition: opacity 0.3s ease; z-index: -1; }
-        .cta-button:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.25); }
+        .cta-button:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 10px 20px rgba(199, 164, 43, 0.25); }
         .cta-button:hover::before { opacity: 1; }
         .animated-element { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
         .animated-element.visible { opacity: 1; transform: translateY(0); }
@@ -65,6 +68,13 @@
         }
         body.dark-mode header.scrolled { background-color: rgba(26, 32, 44, 0.8); }
         .header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        
+        .logo img {
+            height: 40px; width: auto; display: block;
+            transition: opacity 0.3s ease;
+        }
+        .logo:hover img { opacity: 0.8; }
+        .footer-about .logo img { height: 35px; }
         .nav-menu ul { list-style: none; display: flex; gap: 2.5rem; }
         .nav-menu a { font-weight: 500; color: var(--text-color-secondary); position: relative; padding-bottom: 0.5rem; }
         .nav-menu a:hover { color: var(--text-color); }
@@ -77,63 +87,42 @@
         .toggle-ball { background: var(--text-color-secondary); width: 20px; height: 20px; border-radius: 50%; position: absolute; left: 2px; transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center; color: var(--bg-body); font-size: 0.7em; }
         body.dark-mode .theme-toggle .toggle-ball { transform: translateX(20px); }
         .mobile-menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-color); }
-        #hero { background-color: var(--primary-color); position: relative; min-height: 100vh; display: flex; align-items: center; }
-        #hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://forbes.com.br/wp-content/uploads/2021/07/ForbesESG_EmpreendedoresNegros_27072021_fizkes_GettyImages.jpg') no-repeat center center/cover; opacity: 0.4; transition: transform 1s ease; }
+        
+        #hero { 
+            background-color: var(--primary-color); position: relative; 
+            min-height: 100vh; display: flex; align-items: center; 
+        }
+        #hero::before { 
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            /* Pra performancce, é melhor usar WEBP */
+            background: url('https://forbes.com.br/wp-content/uploads/2021/07/ForbesESG_EmpreendedoresNegros_27072021_fizkes_GettyImages.jpg') no-repeat center center/cover; opacity: 0.4; transition: transform 1s ease; }
         #hero:hover::before { transform: scale(1.03); }
         .hero-content { position: relative; z-index: 2; max-width: 750px; color: var(--dark-text); }
         .hero-content h1 { color: #fff; margin-bottom: 1.5rem; }
         .hero-content h1 span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero-content p { font-size: 1.25rem; color: var(--dark-text-secondary); max-width: 600px; margin-bottom: 2.5rem; }
         
-        /* =================================================================
-           CARROSSEL DE LOGOS INFINITO
-           ================================================================= */
-        #parceiros {
-            padding: 3rem 0;
-            background: var(--bg-alt);
-        }
-
-        @keyframes scrollAnimation {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
+        #parceiros { padding: 3rem 0; background: var(--bg-alt); }
+        @keyframes scrollAnimation { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         .logo-carousel-container {
             width: 100%; max-width: 1200px; margin: 0 auto;
             overflow: hidden; position: relative;
             -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
             mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
         }
-
         .logo-carousel-slider {
             display: flex; align-items: center; gap: 4rem;
             animation: scrollAnimation 20s linear infinite;
         }
-
-        .logo-carousel-container:hover .logo-carousel-slider {
-            animation-play-state: paused;
-        }
-
+        .logo-carousel-container:hover .logo-carousel-slider { animation-play-state: paused; }
         .logo-carousel-slider img {
             height: 40px; width: auto; max-width: 160px;
             object-fit: contain; opacity: 0.7;
             transition: opacity 0.3s ease;
         }
-
-        .logo-carousel-slider img:hover {
-            opacity: 1;
-        }
-
-        body.dark-mode .logo-carousel-slider img {
-            opacity: 0.8;
-        }
-        body.dark-mode .logo-carousel-slider img:hover {
-            opacity: 1;
-        }
-        
-        /* =================================================================
-           FIM DO CARROSSEL DE LOGOS
-           ================================================================= */
+        .logo-carousel-slider img:hover { opacity: 1; }
+        body.dark-mode .logo-carousel-slider img { opacity: 0.8; }
+        body.dark-mode .logo-carousel-slider img:hover { opacity: 1; }
            
         .about-container { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 5rem; }
         .about-image img { width: 100%; border-radius: var(--card-border-radius); box-shadow: var(--shadow-md); }
@@ -168,19 +157,19 @@
         #contato h2, #contato h3, #contato p { color: #fff; }
         .contact-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; background: var(--dark-bg-alt); padding: 5rem; border-radius: var(--card-border-radius); margin: 7rem auto; }
         .form-group input, .form-group textarea { width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid var(--dark-border); background: var(--dark-bg-body); color: var(--dark-text); font-size: 1rem; margin-bottom: 1.5rem; transition: border-color 0.3s, box-shadow 0.3s; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2); }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 3px rgba(199, 164, 43, 0.2); }
         .contact-info-item { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
         .contact-info-item i { font-size: 1.5rem; color: var(--secondary-color); width: 30px; text-align: center; }
+        /* ACESSIBILIDADE: Corrigindo a ordem dos títulos */
+        .contact-info-item h3 { font-size: 1.1rem; margin-bottom: 0; font-weight: 600; }
         footer { padding: 5rem 0 3rem 0; background: var(--bg-body); border-top: 1px solid var(--border-color); }
         .footer-container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-        .logo img { height: 80px; width: auto; display: block; transition: opacity 0.3s ease; }
-        .logo:hover img { opacity: 0.8;}
-        .footer-about .logo img { height: 80px; }
         .footer-about p { font-size: 0.95rem; max-width: 300px; }
         .social-icons { margin-top: 1.5rem; }
         .social-icons a { color: var(--text-color-secondary); font-size: 1.25rem; margin-right: 1.5rem; transition: color 0.3s ease, transform 0.3s ease; display: inline-block; }
         .social-icons a:hover { color: var(--secondary-color); transform: translateY(-3px); }
-        .footer-links h4 { margin-bottom: 1rem; font-size: 1.1rem; }
+        /* ACESSIBILIDADE: Corrigindo a ordem dos títulos */
+        .footer-links h3 { margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600; }
         .footer-links ul { list-style: none; }
         .footer-links li { margin-bottom: 0.75rem; }
         .footer-links a { color: var(--text-color-secondary); }
@@ -251,19 +240,17 @@
                     <img src="https://companieslogo.com/img/orig/IBKR-2f730041.png?t=1720244492" alt="Logo da corretora Interactive Brokers">
                     <img src="https://diversiview.online/partner-directory/wp-content/uploads/2024/08/Degiro-integration-logo-1.png" alt="Logo da corretora Degiro">
                     <img src="https://brokerstimes.com/wp-content/uploads/2020/02/XTB.png" alt="Logo da corretora XTB">
-                    
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Binance_Logo.svg" alt="Logo da corretora Binance">
-                    <img src="https://img.icons8.com/?size=100&id=5qUJBPRD9xiI&format=png&color=000000" alt="Logo da corretora Coinbase">
-                    <img src="https://companieslogo.com/img/orig/IBKR-2f730041.png?t=1720244492" alt="Logo da corretora Interactive Brokers">
-                    <img src="https://diversiview.online/partner-directory/wp-content/uploads/2024/08/Degiro-integration-logo-1.png" alt="Logo da corretora Degiro">
-                    <img src="https://brokerstimes.com/wp-content/uploads/2020/02/XTB.png" alt="Logo da corretora XTB">
-
                     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Binance_Logo.svg" alt="Logo da corretora Binance">
                     <img src="https://img.icons8.com/?size=100&id=5qUJBPRD9xiI&format=png&color=000000" alt="Logo da corretora Coinbase">
                     <img src="https://companieslogo.com/img/orig/IBKR-2f730041.png?t=1720244492" alt="Logo da corretora Interactive Brokers">
                     <img src="https://diversiview.online/partner-directory/wp-content/uploads/2024/08/Degiro-integration-logo-1.png" alt="Logo da corretora Degiro">
                     <img src="https://brokerstimes.com/wp-content/uploads/2020/02/XTB.png" alt="Logo da corretora XTB">
                     
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Binance_Logo.svg" alt="Logo da corretora Binance">
+                    <img src="https://img.icons8.com/?size=100&id=5qUJBPRD9xiI&format=png&color=000000" alt="Logo da corretora Coinbase">
+                    <img src="https://companieslogo.com/img/orig/IBKR-2f730041.png?t=1720244492" alt="Logo da corretora Interactive Brokers">
+                    <img src="https://diversiview.online/partner-directory/wp-content/uploads/2024/08/Degiro-integration-logo-1.png" alt="Logo da corretora Degiro">
+                    <img src="https://brokerstimes.com/wp-content/uploads/2020/02/XTB.png" alt="Logo da corretora XTB">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Binance_Logo.svg" alt="Logo da corretora Binance">
                     <img src="https://img.icons8.com/?size=100&id=5qUJBPRD9xiI&format=png&color=000000" alt="Logo da corretora Coinbase">
                     <img src="https://companieslogo.com/img/orig/IBKR-2f730041.png?t=1720244492" alt="Logo da corretora Interactive Brokers">
@@ -360,8 +347,8 @@
                         <h2 data-key="contact_title" style="text-align: left;">Inicie a Sua Jornada de Sucesso</h2>
                         <p data-key="contact_subtitle">Estamos prontos para o ajudar a alcançar os seus objetivos financeiros. Contacte-nos para uma consulta inicial sem compromisso.</p>
                         <div class="contact-info">
-                            <div class="contact-info-item"><i class="fas fa-envelope"></i><div><h4 data-key="contact_email_label">E-mail</h4><a href="mailto:global@investidor.com">global@investidor.com</a></div></div>
-                            <div class="contact-info-item"><i class="fas fa-phone"></i><div><h4 data-key="contact_phone_label">Telefone</h4><a href="tel:+244932712385">+244 932 712 385</a></div></div>
+                            <div class="contact-info-item"><i class="fas fa-envelope"></i><div><h3 data-key="contact_email_label">E-mail</h3><a href="mailto:global@investidor.com">global@investidor.com</a></div></div>
+                            <div class="contact-info-item"><i class="fas fa-phone"></i><div><h3 data-key="contact_phone_label">Telefone</h3><a href="tel:+244932712385">+244 932 712 385</a></div></div>
                         </div>
                     </div>
                     <div class="contact-form">
@@ -380,10 +367,14 @@
                         <img src="https://i.postimg.cc/kGNTtmmm/rl.png" alt="Investidor Angola Logo">
                     </div>
                     <p data-key="footer_about">Inteligência financeira para investidores em Angola e no mundo.</p>
-                    <div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Visite nosso Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Visite nosso LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Visite nosso Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
                 <div class="footer-links">
-                    <h4 data-key="footer_solutions_title">Soluções</h4>
+                    <h3 data-key="footer_solutions_title">Soluções</h3>
                     <ul>
                         <li><a href="#solucoes" data-key="footer_link_training">Formações</a></li>
                         <li><a href="#solucoes" data-key="footer_link_mentorship">Mentoria</a></li>
@@ -391,14 +382,14 @@
                     </ul>
                 </div>
                  <div class="footer-links">
-                    <h4 data-key="footer_company_title">Empresa</h4>
+                    <h3 data-key="footer_company_title">Empresa</h3>
                     <ul>
                         <li><a href="#sobre" data-key="footer_link_about">Sobre Nós</a></li>
                         <li><a href="#contato" data-key="footer_link_contact">Contato</a></li>
                     </ul>
                 </div>
                  <div class="footer-links">
-                    <h4 data-key="footer_platforms_title">Plataformas</h4>
+                    <h3 data-key="footer_platforms_title">Plataformas</h3>
                     <ul>
                         <li><a href="#plataformas">BullMarketX</a></li>
                         <li><a href="#plataformas">PrimeOptions</a></li>
@@ -408,7 +399,7 @@
             </div>
             <div class="footer-bottom">
                 © <span id="current-year"></span> Portal do Investidor Angola. <span data-key="footer_copyright">Todos os direitos reservados.</span><br>
-                        Desenvolvido por <a href="https://www.linkedin.com/in/jordanlvs" target="_blank" class="font-bold text-white hover:underline whitespace-nowrap">@jordanlvs <i class="fa-solid fa-circle-check verified-badge"></i></a> (Proprietário da <a href="https://www.instagram.com/weblv.dev/" target="_blank" class="font-bold text-white hover:underline">WebLv)</a>        
+                        Desenvolvido por <a href="https://www.linkedin.com/in/jordanlvs" target="_blank">@jordanlvs <i class="fa-solid fa-circle-check verified-badge"></i></a> (Proprietário da <a href="https://www.instagram.com/weblv.dev/" target="_blank">WebLv)</a>        
 
             </div>
         </div>
